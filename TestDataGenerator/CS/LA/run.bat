@@ -1,0 +1,1 @@
+java -cp .\la.jar;.\la_lib\gson-2.8.3.jar;.\la_lib\hamcrest-core-1.1.jar;.\la_lib\hsqldb.jar;.\la_lib\hsqldb-2.6.0.jar;;.\la_lib\log4j-1.2.17.jar  task.com.LogAlert
