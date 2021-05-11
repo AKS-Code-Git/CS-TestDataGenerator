@@ -8,14 +8,15 @@ import java.util.Random;
 public class GenerateData {
 	private static short RANGE= 4;
 	public static void main(String[] args) {
+		PropUtil.readProperties();
 		Random rand = new Random();
 		long l = System.currentTimeMillis();
 		int i = 0;
-		File file = new File("D:\\Practice\\task\\src\\main\\java\\test.json");
+		File file = new File(PropUtil.getJsonFile());
 		FileWriter fr=null;
 		try {
-			while (i < 20) {
-				Thread.sleep(3000);
+			while (i < PropUtil.getLoop()) {
+				Thread.sleep(PropUtil.getPause());
 				fr = new FileWriter(file, true);
 				i++;
 				l = l + rand.nextInt(RANGE);
@@ -36,7 +37,6 @@ public class GenerateData {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
 			if(fr!=null) {
@@ -57,7 +57,6 @@ public class GenerateData {
 			fr.write("data");
 			fr.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
