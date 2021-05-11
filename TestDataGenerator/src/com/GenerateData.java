@@ -6,46 +6,51 @@ import java.io.IOException;
 import java.util.Random;
 
 public class GenerateData {
-	private static short RANGE= 4;
+	private static short RANGE = 4;
+
 	public static void main(String[] args) {
 		PropUtil.readProperties();
 		Random rand = new Random();
 		long l = System.currentTimeMillis();
 		int i = 0;
 		File file = new File(PropUtil.getJsonFile());
-		FileWriter fr=null;
+		FileWriter fr = null;
 		try {
 			while (i < PropUtil.getLoop()) {
 				Thread.sleep(PropUtil.getPause());
 				fr = new FileWriter(file, true);
 				i++;
 				l = l + rand.nextInt(RANGE);
-				fr.append("{\"id\":\"scsmbstgra\", \"state\":\"STARTED\",\"type\":\"APPLICATION_LOG\",\"host\":\"12345\",\"timestamp\":"+ l + "}\n");
+				fr.append("{\"id\":\"" + i
+						+ "scsmbstgra\", \"state\":\"STARTED\",\"type\":\"APPLICATION_LOG\",\"host\":\"12345\",\"timestamp\":"
+						+ l + "}\n");
 				l = l + rand.nextInt(RANGE);
-				fr.append("{\"id\":\"scsmbstgrb\",\"state\":\"STARTED\",\"timestamp\":" + l + "}\n");
+				fr.append("{\"id\":\"" + i + "scsmbstgrb\",\"state\":\"STARTED\",\"timestamp\":" + l + "}\n");
 				l = l + rand.nextInt(RANGE);
-				fr.append("{\"id\":\"scsmbstgrc\",\"state\":\"STARTED\",\"timestamp\":" + l + "}\n");
+				fr.append("{\"id\":\"" + i + "scsmbstgrc\",\"state\":\"STARTED\",\"timestamp\":" + l + "}\n");
 
 				l = l + rand.nextInt(RANGE);
-				fr.append("{\"id\":\"scsmbstgra\",\"state\":\"FINISHED\",\"type\":\"APPLICATION_LOG\",\"host\":\"12345\",\"timestamp\":"+ l + "}\n");
+				fr.append("{\"id\":\"" + i
+						+ "scsmbstgra\",\"state\":\"FINISHED\",\"type\":\"APPLICATION_LOG\",\"host\":\"12345\",\"timestamp\":"
+						+ l + "}\n");
 				l = l + rand.nextInt(RANGE);
-				fr.append("{\"id\":\"scsmbstgrb\",\"state\":\"FINISHED\",\"timestamp\":" + l + "}\n");
+				fr.append("{\"id\":\"" + i + "scsmbstgrb\",\"state\":\"FINISHED\",\"timestamp\":" + l + "}\n");
 				l = l + rand.nextInt(RANGE);
-				fr.append("{\"id\":\"scsmbstgrc\",\"state\":\"FINISHED\",\"timestamp\":" + l + "}\n");
-				fr.close();				
+				fr.append("{\"id\":\"" + i + "scsmbstgrc\",\"state\":\"FINISHED\",\"timestamp\":" + l + "}\n");
+				fr.close();
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
-		}finally {
-			if(fr!=null) {
-			try {
-				fr.close();
-				file=null;
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+		} finally {
+			if (fr != null) {
+				try {
+					fr.close();
+					file = null;
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}
